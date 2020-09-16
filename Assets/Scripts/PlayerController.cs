@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     
     float rotateCorrectionSpeed = 200.0f;
-    float moveSpeed = 1;
+    float moveSpeed = 20;
     float horizontalInput;
     float verticalInput;
     Rigidbody rigb;
