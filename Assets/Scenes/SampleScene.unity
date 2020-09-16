@@ -438,6 +438,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1267410542871183225, guid: b984416e28135544482a8bd74e682ff0, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7895010728525458466, guid: b984416e28135544482a8bd74e682ff0, type: 3}
       propertyPath: m_Name
       value: Ragdoll Man
