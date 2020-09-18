@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     
     float rotateCorrectionSpeed = 200.0f;
     float moveSpeed = 20f;
-    float jumpForce = 20f;
+    float jumpForce = 200f;
     float horizontalInput;
     float verticalInput;
     bool grounded;
@@ -20,7 +20,11 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionStay(Collision collision) {
-        grounded = true;
+        if (!collision.gameObject.CompareTag("Player")) {
+            Debug.Log("not player");
+            grounded = true;
+        }
+        
     }
 
     // Update is called once per frame
@@ -34,14 +38,15 @@ public class PlayerController : MonoBehaviour
         rigb.AddForce(new Vector3(horizontalInput, 0, verticalInput) * moveSpeed);
         // transform.Translate(new Vector3(horizontalInput, 0, verticalInput) * moveSpeed * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump")) {
+        if (Input.GetButtonDown("Jump") && grounded) {
+            Debug.Log("jump");
             jump();
         }
 
     }
 
     private void jump() {
-        rigb.AddForce(new Vector3(0, jumpForce, 0));
+        rigb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
         grounded = false;
     }
 }
