@@ -6,9 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     
     float rotateCorrectionSpeed = 200.0f;
-    float moveSpeed = 20;
+    float moveSpeed = 20f;
+    float jumpForce = 200f;
     float horizontalInput;
     float verticalInput;
+    bool grounded;
     Rigidbody rigb;
     
     // Start is called before the first frame update
@@ -17,23 +19,34 @@ public class PlayerController : MonoBehaviour
         rigb = gameObject.GetComponent<Rigidbody>();
     }
 
+    private void OnCollisionStay(Collision collision) {
+        if (!collision.gameObject.CompareTag("Player")) {
+            Debug.Log("not player");
+            grounded = true;
+        }
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
         // polling input
-        /**
-        if (horizontalInput + verticalInput == 0.0f) {
-            Debug.Log("rotation");
-            var step = rotateCorrectionSpeed * Time.deltaTime;
-            Quaternion rotateToward
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, , step);
-        }
-        */
+      
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
         rigb.AddForce(new Vector3(horizontalInput, 0, verticalInput) * moveSpeed);
         // transform.Translate(new Vector3(horizontalInput, 0, verticalInput) * moveSpeed * Time.deltaTime);
 
+        if (Input.GetButtonDown("Jump") && grounded) {
+            Debug.Log("jump");
+            jump();
+        }
+
+    }
+
+    private void jump() {
+        rigb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+        grounded = false;
     }
 }
