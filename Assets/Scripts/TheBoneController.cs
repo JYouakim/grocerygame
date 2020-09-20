@@ -13,7 +13,7 @@ public class TheBoneController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         targetedBone.position = ragdollBone.position;
         targetedBone.rotation = ragdollBone.rotation;

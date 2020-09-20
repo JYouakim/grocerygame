@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 20f;
-    public float jumpForce = 200f;
+    public float moveSpeed = 100f;
+    public float jumpForce = 400f;
     public bool grounded = true;
 
     float horizontalInput;
@@ -28,14 +28,13 @@ public class PlayerController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
         rigb.AddForce(new Vector3(horizontalInput, 0, verticalInput) * moveSpeed);
-        // transform.Translate(new Vector3(horizontalInput, 0, verticalInput) * moveSpeed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && grounded) {
             Debug.Log("jump");
             jump();
         }
-
     }
+
 
     private void jump() {
         rigb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);

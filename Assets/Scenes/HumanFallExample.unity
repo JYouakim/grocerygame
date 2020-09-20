@@ -1298,6 +1298,7 @@ GameObject:
   - component: {fileID: 153000012039117161}
   - component: {fileID: 136000010738092183}
   - component: {fileID: 1000013058532086}
+  - component: {fileID: 1000013058532087}
   m_Layer: 9
   m_Name: Waist
   m_TagString: Untagged
@@ -1318,6 +1319,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetedBone: {fileID: 4000013901102276}
+--- !u!114 &1000013058532087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013058532085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5c3d3b7504fcd46a1a5615d77674bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 100
+  jumpForce: 400
+  grounded: 1
 --- !u!1 &1000013108999184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,7 +1476,6 @@ GameObject:
   - component: {fileID: 136000009754766175}
   - component: {fileID: 1000013316285826}
   - component: {fileID: 1000013316285827}
-  - component: {fileID: 1000013316285828}
   m_Layer: 9
   m_Name: Hips
   m_TagString: Untagged
@@ -1576,21 +1591,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1000013316285828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000013316285825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f5c3d3b7504fcd46a1a5615d77674bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 20
-  jumpForce: 600
-  grounded: 1
 --- !u!1 &1000013340331813
 GameObject:
   m_ObjectHideFlags: 0
@@ -4565,7 +4565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ccf94f3228185d4fafc9cfe1d12be33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScript: {fileID: 1000013316285828}
+  playerScript: {fileID: 1000013058532087}
 --- !u!4 &5403943614351323023
 Transform:
   m_ObjectHideFlags: 0
