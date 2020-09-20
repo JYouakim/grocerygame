@@ -4,27 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
-    float rotateCorrectionSpeed = 200.0f;
-    float moveSpeed = 20f;
-    float jumpForce = 200f;
+    public float moveSpeed = 20f;
+    public float jumpForce = 200f;
+    public bool grounded = true;
+
     float horizontalInput;
     float verticalInput;
-    bool grounded;
+    
     Rigidbody rigb;
     
     // Start is called before the first frame update
     void Start()
     {
         rigb = gameObject.GetComponent<Rigidbody>();
-    }
-
-    private void OnCollisionStay(Collision collision) {
-        if (!collision.gameObject.CompareTag("Player")) {
-            Debug.Log("not player");
-            grounded = true;
-        }
-        
     }
 
     // Update is called once per frame
@@ -47,6 +39,5 @@ public class PlayerController : MonoBehaviour
 
     private void jump() {
         rigb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-        grounded = false;
     }
 }
