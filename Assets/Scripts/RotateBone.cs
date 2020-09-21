@@ -15,7 +15,7 @@ public class RotateBone : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         SetTargetRotation(joint, playerTransform.rotation, originalTrans.rotation);
     }

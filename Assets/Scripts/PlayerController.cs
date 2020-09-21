@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Transform playerTransform;
     public float moveSpeed = 100f;
+    public float rotateSpeed = 1f;
     public float jumpForce = 400f;
     public bool grounded = true;
 
     float horizontalInput;
     float verticalInput;
+    float lookHorizontalInput;
+    float lookVerticalInput;
     
     Rigidbody rigb;
     
@@ -26,8 +30,16 @@ public class PlayerController : MonoBehaviour
       
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
+        lookHorizontalInput = Input.GetAxis("LookHorizontal");
+        lookVerticalInput = Input.GetAxis("LookVertical");
 
-        rigb.AddForce(new Vector3(horizontalInput, 0, verticalInput) * moveSpeed);
+        Vector3 Horiz = horizontalInput * playerTransform.forward;
+        Vector3 Vert = verticalInput * playerTransform.right;
+        rigb.AddForce((Horiz + Vert) * moveSpeed);
+        //rotate character
+        Debug.Log("horiz: " + lookHorizontalInput);
+        playerTransform.Rotate(new Vector3(0, lookHorizontalInput * rotateSpeed, 0));
+
 
         if (Input.GetButtonDown("Jump") && grounded) {
             Debug.Log("jump");
