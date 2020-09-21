@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform target;
+    public Transform angleTarget;
     public Camera mainCamera;
 
     public float smoothSpeed = 0.125f;
@@ -12,10 +13,13 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate() {
         Vector3 desiredPosition = target.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(mainCamera.transform.position, desiredPosition, smoothSpeed);
-        
-        mainCamera.transform.position = smoothedPosition;
+        Vector3 smoothedPosition = Vector3.Lerp(mainCamera.transform.position, target.position, smoothSpeed);
 
-        mainCamera.transform.LookAt(target);
+        if(!Input.GetButton("Ragdoll"))
+        {
+            mainCamera.transform.position = smoothedPosition;
+        }
+
+        mainCamera.transform.LookAt(angleTarget);
     }
 }

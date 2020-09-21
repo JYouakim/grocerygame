@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     float verticalInput;
     float lookHorizontalInput;
     float lookVerticalInput;
+    public float rotationAmount = 0;
     
     Rigidbody rigb;
     
@@ -32,13 +33,19 @@ public class PlayerController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         lookHorizontalInput = Input.GetAxis("LookHorizontal");
         lookVerticalInput = Input.GetAxis("LookVertical");
+        Vector3 forwardVector = new Vector3(0, 0, 1);
+        Vector3 rightVector = new Vector3(1, 0, 0);
 
-        Vector3 Horiz = horizontalInput * playerTransform.forward;
-        Vector3 Vert = verticalInput * playerTransform.right;
+        Vector3 rotatedForwardVector = Quaternion.AngleAxis(playerTransform.eulerAngles.y, Vector3.up) * forwardVector;
+        Vector3 rotatedRightVector = Quaternion.AngleAxis(playerTransform.eulerAngles.y, Vector3.up) * rightVector;
+
+        Vector3 Horiz = verticalInput * rotatedForwardVector;
+        Vector3 Vert = horizontalInput * rotatedRightVector;
         rigb.AddForce((Horiz + Vert) * moveSpeed);
         //rotate character
+        rotationAmount += -lookHorizontalInput * rotateSpeed;
         Debug.Log("horiz: " + lookHorizontalInput);
-        playerTransform.Rotate(new Vector3(0, lookHorizontalInput * rotateSpeed, 0));
+        playerTransform.gameObject.GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Euler(0, rotationAmount, 0);
 
 
         if (Input.GetButtonDown("Jump") && grounded) {

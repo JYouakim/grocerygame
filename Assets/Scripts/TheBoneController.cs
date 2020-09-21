@@ -43,13 +43,13 @@ public class TheBoneController : MonoBehaviour
     {
         if (boneJoint != null)
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetButtonDown("Ragdoll"))
             {
                 boneJoint.angularXDrive = deadJoint;
                 boneJoint.angularYZDrive = deadJoint;
             }
 
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetButtonUp("Ragdoll"))
             {
                 boneJoint.angularXDrive = livingJointX;
                 boneJoint.angularYZDrive = livingJointYZ;

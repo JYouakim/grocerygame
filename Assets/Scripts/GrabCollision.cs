@@ -19,11 +19,11 @@ public class GrabCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetButtonDown("Grab"))
         {
             tryingToGrab = true;
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetButtonUp("Grab"))
         {
             tryingToGrab = false;
             if(heldObject != null)
